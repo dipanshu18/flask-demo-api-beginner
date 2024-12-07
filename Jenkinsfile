@@ -8,7 +8,7 @@ pipeline {
           echo "building the docker image..."
           withCredentials([usernamePassword(credentialsId: "dockerhub-creds", passwordVariable: "PASS", usernameVariable: "USER")]) {
             sh "docker build -t dipanshu18/flask_api_jenkins_demo:v3 ."
-            sh "echo $PASS | docker login -u $USER --password stdin"
+            sh "echo ${PASS} | docker login -u ${USER} --password stdin"
             sh "docker push dipanshu18/flask_api_jenkins_demo:v3"
           }
         }
